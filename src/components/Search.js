@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Search = () => {
+const Search = ({ searchText }) => {
+
+  const [text, setText] = useState('');
 
   const onSubmitForm = (event) => {
     event.preventDefault();
+    searchText(text)
   }
 
   return(
@@ -11,6 +14,7 @@ const Search = () => {
       <form onSubmit={onSubmitForm} className="w-full max-w-sm">
         <div className="flex items-center border-b border-b-2 border-purple-400 py-2">
           <input 
+            onChange={event => setText(event.target.value)}
             type="text"
             placeholder="Dogs" 
             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"/
